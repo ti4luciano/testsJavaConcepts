@@ -19,11 +19,17 @@ public class LambdaTests {
 		for (User u : users) {
 			System.out.println("Show user " + u.getName());
 		}
-		
-		users.forEach(u->System.out.println("Foreach with user " + u.getName()));
-		
+
+		users.forEach(u -> System.out.println("Foreach with user " + u.getName()));
+
 		Showing show = new Showing();
 		users.forEach(show);
+		
+		
+		new Thread(() -> {
+			for (int i = 0; i <= 1000; i++) {
+				System.out.print("Thread " + i + ", ");
+			}
+		}).start();;
 	}
-
 }
