@@ -1,8 +1,12 @@
 package tests;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import Concepts.Showing;
 import model.User;
@@ -59,6 +63,19 @@ public class LambdaTests {
 		
 		users.forEach(mostraMsg.andThen(showName));
 		
+		List<User> usersMutavel = new ArrayList<User>();
+		usersMutavel.add(usr1);
+		usersMutavel.add(usr2);
+		usersMutavel.add(usr3);
+		
+		System.out.println("#################################################");
+		
+		usersMutavel.removeIf(u -> u.getName().equals("Luciano"));
+		usersMutavel.forEach(mostraMsg.andThen(showName));
+		
+		System.out.println("#################################################");
+		
+		Collections.sort(usersMutavel, (u1,u2)-> u1.getName().compareTo(u2.getName()));
 		
 	}
 }
