@@ -47,5 +47,18 @@ public class LambdaTests {
 		
 		System.out.println("Cep2 OK? " + validaCep2.valida("60510-175"));
 		
+		
+		
+		Runnable r = () -> {System.out.println("Some test");};
+		
+		System.out.println(r);
+		System.out.println(r.getClass());
+		
+		Consumer<User> mostraMsg = u -> System.out.println("A message");
+		Consumer<User> showName = u -> System.out.println("Name " + u.getName());
+		
+		users.forEach(mostraMsg.andThen(showName));
+		
+		
 	}
 }
