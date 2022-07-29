@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 
 import Concepts.Showing;
 import model.User;
+import model.Validador;
 
 public class LambdaTests {
 
@@ -28,8 +29,23 @@ public class LambdaTests {
 		
 		new Thread(() -> {
 			for (int i = 0; i <= 1000; i++) {
-				System.out.print("Thread " + i + ", ");
+			//	System.out.print("Thread " + i + ", ");
 			}
-		}).start();;
+		}).start();
+		
+		Validador<String> validaCep = new Validador<String>() {
+			@Override
+			public boolean valida(String t) {
+				return t.matches("[0-9]{5}-[0-9]{3}");
+			}
+		};
+		
+		
+		System.out.println("Cep OK? " + validaCep.valida("60510-175"));
+		
+		Validador<String> validaCep2 = v -> v.matches("[0-9]{5}-[0-9]{3}");
+		
+		System.out.println("Cep2 OK? " + validaCep2.valida("60510-175"));
+		
 	}
 }
